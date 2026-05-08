@@ -4,6 +4,7 @@ body {
   padding: 0;
   font-family: "Arial Narrow";
   font-size: 12px; /* Everything */
+  overflow-x: hidden;
 }
 
 code {
