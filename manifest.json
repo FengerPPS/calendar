@@ -1,7 +1,7 @@
 {
   "name": "Fenger Calendar",
   "short_name": "Calendar",
-  "start_url": "/",
+  "start_url": "/calendar",
   "display": "standalone",
   "min_width": 150,
   "min_height": 200
