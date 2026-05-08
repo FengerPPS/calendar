@@ -1,0 +1,49 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial Narrow";
+  font-size: 12px; /* Everything */
+}
+
+code {
+  font-family: "Arial Narrow";
+  font-size: 2.2em; /* current time */
+  font-weight: bold;
+}
+h2 {
+  font-size: 2em; /* date in the header */
+  margin: 0;
+}
+
+#calendar {
+  max-width: 150px;
+  position: absolute;
+  margin: 2px auto;
+}
+
+.fc-time-grid .fc-slats td {
+  height: 8em; /* grid height */
+  border-bottom: 0; /* each cell is responsible for its top border */
+}
+
+/*
+.fc-axis .fc-widget-content td {
+	width: 2px;
+}
+*/
+
+.fc-event {
+  position: relative; /* for resize handle and other inner positioning */
+  display: block; /* make the <a> tag block */
+  font-family: "Arial Narrow";
+  font-size: 3em; /* this is both the event time range and the title below */
+  line-height: 1;
+  border-radius: 3px;
+  border: 1px solid #3a87ad; /* default BORDER color */
+  font-weight: bold; /* undo jqui's ui-widget-header bold */
+}
+
+.fc-title {
+  font-size: 0.4em; /* title in the event itself (below the time range)*/
+}
