@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   setInterval(function () {
-    var refresh = "08:24:00";
+    var refresh = "09:25:00";
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
