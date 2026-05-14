@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }); //end of calendar setup
 
-  var midnight = "00:00:00";
+  var midnight = "12:30:00";
   var now = null;
 
   
