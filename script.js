@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   setInterval(function () {
-    var refresh = "09:25:00";
+    var refresh = "08:25:00";
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
@@ -87,15 +87,15 @@ document.addEventListener("DOMContentLoaded", function () {
     //   calendar.refetchEvents();
     // }
 
-if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
-		//const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
-		//console.log("DIFFERENT DAY - Online status: " + onlineCheck);
-		if (true){				// only refresh page if we're online
-			const url = new URL(window.location.href);
-			url.searchParams.set('reloadTime', Date.now().toString());
-			window.location.href = url.toString();
-		}
-	}
+ //    if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
+	// 	//const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
+	// 	//console.log("DIFFERENT DAY - Online status: " + onlineCheck);
+	// 	if (true){				// only refresh page if we're online
+	// 		const url = new URL(window.location.href);
+	// 		url.searchParams.set('reloadTime', Date.now().toString());
+	// 		window.location.href = url.toString();
+	// 	}
+	// }
     
 
     
