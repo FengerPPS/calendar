@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var date = moment().format("YYYYMMDD");	//today's date
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: [FullCalendarTimeGrid.default, FullCalendarGoogleCalendar.default],
@@ -66,31 +67,37 @@ document.addEventListener("DOMContentLoaded", function () {
   var midnight = "00:00:00";
   var now = null;
 
-  // 15 minutes = 900 seconds
-  var refreshIntervalSeconds = 1 * 60; 
-  var refreshCountdown = refreshIntervalSeconds;
   
   setInterval(function () {
+    var refresh = "08:24:00";
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
-
-    if (now.format("HH:mm:ss") === midnight) {
-      refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
-      //alert('reset() function here');
-      calendar.today();      
-      calendar.refetchEvents();
-      //calendar.destroy();
-      //calendar.render();
-      //window.location.reload(); 
-    }
     
-    refreshCountdown--;
-    if (refreshCountdown <= 0) {
-      //calendar.refetchEvents();
-      refreshCountdown = refreshIntervalSeconds; // Reset interval counter
-      window.location.reload(); 
+    if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
+ 	    //alert('reset() function here');
+      const url = new URL(window.location.href);
+      url.searchParams.set('reloadTime', Date.now().toString());
+      window.location.href = url.toString();
     }
+    // if (now.format("HH:mm:ss") === midnight) {
+    //   refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
+    //   //alert('reset() function here');
+    //   calendar.today();      
+    //   calendar.refetchEvents();
+    // }
+
+if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
+		//const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
+		//console.log("DIFFERENT DAY - Online status: " + onlineCheck);
+		if (true){				// only refresh page if we're online
+			const url = new URL(window.location.href);
+			url.searchParams.set('reloadTime', Date.now().toString());
+			window.location.href = url.toString();
+		}
+	}
+    
+
     
     if (true /*now.minutes() == 0 || firstRun */) {
       firstRun = false;
