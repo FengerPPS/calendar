@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var now = null;
 
   // 15 minutes = 900 seconds
-  var refreshIntervalSeconds = 5 * 60; 
+  var refreshIntervalSeconds = 1 * 60; 
   var refreshCountdown = refreshIntervalSeconds;
   
   setInterval(function () {
@@ -87,8 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     refreshCountdown--;
     if (refreshCountdown <= 0) {
-      calendar.refetchEvents();
+      //calendar.refetchEvents();
       refreshCountdown = refreshIntervalSeconds; // Reset interval counter
+      window.location.reload(); 
     }
     
     if (true /*now.minutes() == 0 || firstRun */) {
