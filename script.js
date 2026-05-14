@@ -72,13 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
-    
-  // if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
-  //   //alert('reset() function here');
-  //   const url = new URL(window.location.href);
-  //   url.searchParams.set('reloadTime', Date.now().toString());
-  //   window.location.href = url.toString();
-  // }
 
     if (now.format("HH:mm:ss") === midnight) {
       //refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
@@ -88,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.location.href = url.toString();
     }
 
- //    if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
+    //    if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
 	// 	//const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
 	// 	//console.log("DIFFERENT DAY - Online status: " + onlineCheck);
 	// 	if (true){				// only refresh page if we're online
@@ -97,9 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// 		window.location.href = url.toString();
 	// 	}
 	// }
-    
-
-    
+        
     if (true /*now.minutes() == 0 || firstRun */) {
       firstRun = false;
       var scrollTime = moment();
