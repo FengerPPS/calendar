@@ -74,12 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
     
-    if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
- 	    //alert('reset() function here');
-      const url = new URL(window.location.href);
-      url.searchParams.set('reloadTime', Date.now().toString());
-      window.location.href = url.toString();
-    }
+    // if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
+ 	  //   //alert('reset() function here');
+    //   const url = new URL(window.location.href);
+    //   url.searchParams.set('reloadTime', Date.now().toString());
+    //   window.location.href = url.toString();
+    // }
     // if (now.format("HH:mm:ss") === midnight) {
     //   refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
     //   //alert('reset() function here');
