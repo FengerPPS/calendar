@@ -66,17 +66,31 @@ document.addEventListener("DOMContentLoaded", function () {
   var midnight = "00:00:00";
   var now = null;
 
+  // 15 minutes = 900 seconds
+  var refreshIntervalSeconds = 5 * 60; 
+  var refreshCountdown = refreshIntervalSeconds;
+  
   setInterval(function () {
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
 
     if (now.format("HH:mm:ss") === midnight) {
+      refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
       //alert('reset() function here');
-      calendar.today();
+      calendar.today();      
+      calendar.refetchEvents();
       //calendar.destroy();
       //calendar.render();
+      //window.location.reload(); 
     }
+    
+    refreshCountdown--;
+    if (refreshCountdown <= 0) {
+      calendar.refetchEvents();
+      refreshCountdown = refreshIntervalSeconds; // Reset interval counter
+    }
+    
     if (true /*now.minutes() == 0 || firstRun */) {
       firstRun = false;
       var scrollTime = moment();
