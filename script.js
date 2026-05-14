@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var date = moment().format("YYYYMMDD");	//today's date
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: [FullCalendarTimeGrid.default, FullCalendarGoogleCalendar.default],
@@ -69,23 +68,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   
   setInterval(function () {
-    var refresh = "08:25:00";
+    //var refresh = "08:25:00";
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
     
-    // if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
- 	  //   //alert('reset() function here');
-    //   const url = new URL(window.location.href);
-    //   url.searchParams.set('reloadTime', Date.now().toString());
-    //   window.location.href = url.toString();
-    // }
-    // if (now.format("HH:mm:ss") === midnight) {
-    //   refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
-    //   //alert('reset() function here');
-    //   calendar.today();      
-    //   calendar.refetchEvents();
-    // }
+  // if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
+  //   //alert('reset() function here');
+  //   const url = new URL(window.location.href);
+  //   url.searchParams.set('reloadTime', Date.now().toString());
+  //   window.location.href = url.toString();
+  // }
+
+    if (now.format("HH:mm:ss") === midnight) {
+      //refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
+      //alert('reset() function here');
+      const url = new URL(window.location.href);
+      url.searchParams.set('reloadTime', Date.now().toString());
+      window.location.href = url.toString();
+    }
 
  //    if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
 	// 	//const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
