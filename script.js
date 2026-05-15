@@ -79,9 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var now = null;
 
-  
   setInterval(function () {
-  var refresh = "08:24:00";					// set time to refresh browser
+    var refresh = "08:24:00";					// set time to refresh browser
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
@@ -166,10 +165,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } // next
 
-      if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
+      if ((moment().format("YYYYMMDD") != date) || (now.format("HH:mm:ss") === refresh) ) { // refresh browser window if saved date isn't same as current date (we've passed midnight)
         checkOnlineStatus().then((isOnline) => {
           if (isOnline){
-            console.log("DIFFERENT DAY - Online Reloading");
+            console.log("Reloading Page");
             const url = new URL(window.location.href);
             url.searchParams.set('reloadTime', Date.now().toString());
             window.location.href = url.toString();
