@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
         checkOnlineStatus().then((isOnline) => {
           if (isOnline){
-            console.log("DIFFERENT DAY - Online status: " + onlineCheck);
+            console.log("DIFFERENT DAY - Online Reloading");
             const url = new URL(window.location.href);
             url.searchParams.set('reloadTime', Date.now().toString());
             window.location.href = url.toString();
