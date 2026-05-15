@@ -2,7 +2,7 @@
 // check if online... so that we don't try to change days if not online yet
 const checkOnlineStatus = async () => {
   try {
-    const online = await fetch("/1pixel.png");
+    const online = await fetch("/calendar/1pixel.png");
     return online.status >= 200 && online.status < 300; // either true or false
   } catch (err) {
     return false; // definitely offline
