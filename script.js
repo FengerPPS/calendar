@@ -81,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
   
   setInterval(function () {
   var refresh = "08:24:00";					// set time to refresh browser
-	  const onlineCheck = await checkOnlineStatus(); 			// checks to see if we're online
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
@@ -167,9 +166,9 @@ document.addEventListener("DOMContentLoaded", function () {
       } // next
 
       if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
-        const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
+        const onlineCheck = checkOnlineStatus();          // checks to see if we're online
         console.log("DIFFERENT DAY - Online status: " + onlineCheck);
-        if (onlineCheck == true){				// only refresh page if we're online
+        if (onlineCheck){				// only refresh page if we're online
           const url = new URL(window.location.href);
           url.searchParams.set('reloadTime', Date.now().toString());
           window.location.href = url.toString();
