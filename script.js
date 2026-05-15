@@ -1,4 +1,16 @@
+
+// check if online... so that we don't try to change days if not online yet
+const checkOnlineStatus = async () => {
+  try {
+    const online = await fetch("/1pixel.png");
+    return online.status >= 200 && online.status < 300; // either true or false
+  } catch (err) {
+    return false; // definitely offline
+  }
+};
+
 document.addEventListener("DOMContentLoaded", function () {
+  var date = moment().format("YYYYMMDD");	//today's date
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: [FullCalendarTimeGrid.default, FullCalendarGoogleCalendar.default],
@@ -63,33 +75,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }); //end of calendar setup
 
-  var midnight = "00:00:00";
+
   var now = null;
 
   
   setInterval(function () {
-    //var refresh = "08:25:00";
+  var refresh = "08:24:00";					// set time to refresh browser
+	  const onlineCheck = await checkOnlineStatus(); 			// checks to see if we're online
     now = moment();
     var firstRun = true;
     $("#time").text(now.format("h:mm:ss"));
-
-    if (now.format("HH:mm:ss") === midnight) {
-      //refreshCountdown = refreshIntervalSeconds; // Reset interval counter at midnight
-      //alert('reset() function here');
-      const url = new URL(window.location.href);
-      url.searchParams.set('reloadTime', Date.now().toString());
-      window.location.href = url.toString();
+    
+    if (now.format("HH:mm:ss") === refresh) {                       // refresh the browser when we hit the refresh time to catch a schedule change
+ 	    //alert('reset() function here');
+            const url = new URL(window.location.href);
+            url.searchParams.set('reloadTime', Date.now().toString());
+            window.location.href = url.toString();
     }
 
-    //    if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
-	// 	//const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
-	// 	//console.log("DIFFERENT DAY - Online status: " + onlineCheck);
-	// 	if (true){				// only refresh page if we're online
-	// 		const url = new URL(window.location.href);
-	// 		url.searchParams.set('reloadTime', Date.now().toString());
-	// 		window.location.href = url.toString();
-	// 	}
-	// }
         
     if (true /*now.minutes() == 0 || firstRun */) {
       firstRun = false;
@@ -163,6 +166,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } // next
 
+      if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
+        const onlineCheck = await checkOnlineStatus();          // checks to see if we're online
+        console.log("DIFFERENT DAY - Online status: " + onlineCheck);
+        if (onlineCheck == true){				// only refresh page if we're online
+          const url = new URL(window.location.href);
+          url.searchParams.set('reloadTime', Date.now().toString());
+          window.location.href = url.toString();
+        }
+      }
       $("#stats").text(" -" + minToGo + "/+" + minElapsed);
     }
   }, 1000);
