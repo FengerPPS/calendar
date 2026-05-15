@@ -10,8 +10,8 @@ const checkOnlineStatus = async () => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  //var date = moment().format("YYYYMMDD");	//today's date
-  var date = "20260514"
+  var date = moment().format("YYYYMMDD");	//today's date
+  //var date = "20260514"
   var calendarEl = document.getElementById("calendar");
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: [FullCalendarTimeGrid.default, FullCalendarGoogleCalendar.default],
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       $("#stats").text(" -" + minToGo + "/+" + minElapsed);
     }
-  }, 5000);
+  }, 1000);
 
   calendar.render();
 });
