@@ -166,13 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
       } // next
 
       if (moment().format("YYYYMMDD") != date){ // refresh browser window if saved date isn't same as current date (we've passed midnight)
-        const onlineCheck = checkOnlineStatus();          // checks to see if we're online
-        console.log("DIFFERENT DAY - Online status: " + onlineCheck);
-        if (onlineCheck){				// only refresh page if we're online
-          const url = new URL(window.location.href);
-          url.searchParams.set('reloadTime', Date.now().toString());
-          window.location.href = url.toString();
-        }
+        checkOnlineStatus().then((isOnline) => {
+          if (isOnline){
+            console.log("DIFFERENT DAY - Online status: " + onlineCheck);
+            const url = new URL(window.location.href);
+            url.searchParams.set('reloadTime', Date.now().toString());
+            window.location.href = url.toString();
+          }
+        });
       }
       $("#stats").text(" -" + minToGo + "/+" + minElapsed);
     }
